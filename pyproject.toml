@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=63.2"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "pycli"
+version = "0.0.1"
+authors = [
+  { name="Jere Ritchie", email="jererithchie@gmail.com" },
+]
+description = "pycli is a template python library/cli to get you up and running quickly"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/JLRitch/pycli"
+"Bug Tracker" = "https://github.com/JLRitch/pycli/issues"

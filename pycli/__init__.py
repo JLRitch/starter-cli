@@ -1,3 +1,6 @@
-__version__ = "0.0.1"
+# standard modules
+import importlib.metadata
 
-# TODO add module imports
+
+# TODO changethe string in version() to match your project's module name
+__version__ = importlib.metadata.version('pycli')
