@@ -1,6 +1,8 @@
 # standard imports
 import getpass
 import platform
+import asyncio
+import json
 
 # external imports
 import click
@@ -8,6 +10,7 @@ import click
 # project imports
 import pycli
 from pycli.extractors import PyExtractor
+from pycli.fetchers import get_multiple_pokemon_data
 
 
 ###############
@@ -100,3 +103,31 @@ def extract_dependencies(
     extractor.read_requirements("requirements.txt")
 
     click.echo(click.style(f"Successfully read packages!!", fg="green"))
+
+###############
+### fetch commands
+###############
+@app.group("fetch")
+def create():
+     # present only for sub-commands
+    pass
+
+@create.command("pokemon")
+@click.option(
+    "-n",
+    "--name",
+    type=str,
+    help="The names of the pokemon you want to fetch data for"
+)
+def fetch_pokemon(
+    name: str
+):
+    """
+    fetch_pokemon gets data from the pokemon api for the provided pokemon
+    """
+    pokemon_names = name.split(",")
+    async def fetch_request():
+        pokemon_data = await get_multiple_pokemon_data(pokemon_names)
+        return pokemon_data
+    pokemon_data = asyncio.run(fetch_request())
+    click.echo(json.dumps(pokemon_data, indent=4))

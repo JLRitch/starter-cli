@@ -66,3 +66,9 @@ click==8.1.3
 colorama==0.4.5
 Successfully read packages!!
 ```
+
+## Collect Pokemon
+
+```shell
+pycli fetch pokemon --name=bulbasaur,charmander
+```
