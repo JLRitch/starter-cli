@@ -1,1 +1,1 @@
-python -m pytest --cov-report term-missing --cov=pycli test/unit/
+python -m pytest -v --cov-report term-missing --cov=pycli test/unit/

@@ -115,17 +115,31 @@ def create():
 @create.command("pokemon")
 @click.option(
     "-n",
-    "--name",
+    "--names",
     type=str,
     help="The names of the pokemon you want to fetch data for"
 )
+@click.option(
+    "--testing",
+    is_flag=True,
+    expose_value=True,
+    is_eager=True,
+    help="Enables test mode on cli commands.",
+)
 def fetch_pokemon(
-    name: str
+    names: str,
+    testing: bool=False
 ):
     """
     fetch_pokemon gets data from the pokemon api for the provided pokemon
     """
-    pokemon_names = name.split(",")
+    pokemon_names = names.split(",")
+    if testing:
+        pokemon_data = [{"name": name, "height": 1, "weight": 1} for name in pokemon_names]
+        click.echo(
+            json.dumps(pokemon_data)
+        )
+        return pokemon_data
     async def fetch_request():
         pokemon_data = await get_multiple_pokemon_data(pokemon_names)
         return pokemon_data
