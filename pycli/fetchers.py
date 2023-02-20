@@ -10,7 +10,7 @@ import aiohttp
 class PokemonFetcher(object):
 
     def __init__(self):
-        self.name = "A python extractor object"
+        self.name = "A pokemon fetcher object"
 
     async def get_pokemon_data(self, name):
         async with aiohttp.ClientSession() as session:
