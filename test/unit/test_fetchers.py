@@ -5,7 +5,7 @@ from unittest.mock import patch, MagicMock
 # external imports
 
 # project imports
-from pycli.fetchers import get_multiple_pokemon_data
+from pycli.fetchers import PokemonFetcher
 
 
 class TestGetMultiplePokemonData(unittest.TestCase):
@@ -25,6 +25,6 @@ class TestGetMultiplePokemonData(unittest.TestCase):
             mock_get.return_value.__aenter__ = MagicMock(return_value=mock_response)
             mock_get.return_value.__aexit__ = MagicMock(return_value=None)
             
-            actual_data = await get_multiple_pokemon_data(pokemon_names)
+            actual_data = await PokemonFetcher.get_multiple_pokemon_data(pokemon_names)
             
             self.assertEqual(actual_data, expected_data)

@@ -10,7 +10,7 @@ import click
 # project imports
 import pycli
 from pycli.extractors import PyExtractor
-from pycli.fetchers import get_multiple_pokemon_data
+from pycli.fetchers import PokemonFetcher
 
 
 ###############
@@ -144,5 +144,5 @@ def fetch_pokemon(
             json.dumps(pokemon_data)
         )
         return pokemon_data
-    pokemon_data = asyncio.run(get_multiple_pokemon_data(pokemon_names))
+    pokemon_data = asyncio.run(PokemonFetcher.get_multiple_pokemon_data(pokemon_names))
     click.echo(json.dumps(pokemon_data, indent=4))
