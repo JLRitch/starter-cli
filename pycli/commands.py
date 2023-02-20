@@ -18,6 +18,10 @@ from pycli.fetchers import get_multiple_pokemon_data
 ###############
 user = getpass.getuser()
 
+# set event loop policy to handle windows based event loop issue
+if platform.system()=='Windows':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 ###############
 ### Call back functions
 ###############
@@ -140,8 +144,5 @@ def fetch_pokemon(
             json.dumps(pokemon_data)
         )
         return pokemon_data
-    async def fetch_request():
-        pokemon_data = await get_multiple_pokemon_data(pokemon_names)
-        return pokemon_data
-    pokemon_data = asyncio.run(fetch_request())
+    pokemon_data = asyncio.run(get_multiple_pokemon_data(pokemon_names))
     click.echo(json.dumps(pokemon_data, indent=4))
